@@ -1,4 +1,5 @@
 import numpy as np
+import json as j
 
 # a = np.array([[1,2,3],[4,5,6],[1,3,9]])
 # b = np.array([[1,3,3],[8,1,6],[3,4,5]])
@@ -462,5 +463,51 @@ a = np.array([[10,20,30,40],
 # print(np.random.seed(40))
 # # print(nums)
 
+# np.random.seed(42)
+# print(np.random.randint(1, 10, size=3))
 
 
+# arr = np.array([1,2,3,4])
+# np.random.shuffle(arr)
+# print(arr) shuffles the array
+
+# arr = np.random.choice([10, 20, 30, 40], size=3)
+# print(arr)
+
+# practice problems
+
+# list comprehension
+# numbers = [1,2,3,4,5]
+# squares = [i**2 for i in numbers]
+# print(squares)
+
+# lambda function
+# cube = lambda x:x**3
+# print(cube(2))
+
+# file
+# wi
+
+# practice problems
+# colors = ["red","blue","yellow","black"]
+# for index,color in enumerate(colors):
+#     print(index,color)
+
+# players = ["Dhoni","Virat"]
+# roles = ["WicketBatsmen","Batsmen"]
+# for p,r in zip(players,roles):
+#     print(f"{p} is a {r}")
+
+
+# try:
+#     result = 10/0
+# except ZeroDivisionError:
+#     print(ZeroDivisionError)
+
+# nums = [1,2,3]
+# cube = list(map(lambda x: x**2,nums))
+# print(cube)
+
+# Courses = ["DataScience","python","Ml","Btech"]
+# filter = list(filter(lambda word : len(word)>2,Courses))
+# print(filter)
