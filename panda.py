@@ -762,4 +762,276 @@ import pandas as pd
 # print(melted)
 
 
-# Topic:
+# Topic: Stack and unstack
+
+
+# df = pd.DataFrame({
+#     "Name": ["Aman", "Babli", "Chetan"],
+#     "Math": [85, 90, 88],
+#     "English": [78, 92, 81],
+#     "Science": [89, 85, 91]
+# })
+
+# # ➤ Task: Convert this DataFrame into a stacked format using stack()
+# stacked_df = df.stack()
+# print(stacked_df)
+
+# df = pd.DataFrame({
+#     "Marks": [85, 78, 89, 90, 92, 85],
+# },
+# index=pd.MultiIndex.from_tuples([
+#     ("Aman", "Math"), ("Aman", "English"), ("Aman", "Science"),
+#     ("Babli", "Math"), ("Babli", "English"), ("Babli", "Science"),
+# ], names=["Student", "Subject"]))
+
+# # ➤ Task: Use unstack() to get subjects as columns and students as rows
+# unstacked_df = df.unstack()
+# print(unstacked_df)
+
+
+# df = pd.DataFrame({
+#     "Name": ["Aman", "Babli", "Chetan"],
+#     "Math": [85, 90, 88],
+#     "English": [78, 92, 81],
+#     "Science": [89, 85, 91]
+# })
+
+# # ➤ Task: Convert this DataFrame into a stacked format using stack()
+# stacked_df = df.stack()
+# print(stacked_df)
+
+# df = pd.DataFrame({
+#     "Marks": [85, 78, 89, 90, 92, 85],
+# },
+# index=pd.MultiIndex.from_tuples([
+#     ("Aman", "Math"), ("Aman", "English"), ("Aman", "Science"),
+#     ("Babli", "Math"), ("Babli", "English"), ("Babli", "Science"),
+# ], names=["Student", "Subject"]))
+
+# # ➤ Task: Use unstack() to get subjects as columns and students as rows
+# unstacked_df = df.unstack()
+# print(unstacked_df)
+
+# df = pd.DataFrame({
+#     "Region": ["East", "East", "West", "West"],
+#     "Product": ["Phone", "Laptop", "Phone", "Laptop"],
+#     "Sales": [20000, 25000, 18000, 24000]
+# })
+
+# pivot = df.pivot(index="Region", columns="Product", values="Sales")
+
+# # ➤ Task: Apply stack() to convert product columns into rows
+# stacked_df = pivot.stack()
+# print(stacked_df)
+
+
+# df = pd.DataFrame({
+#     "Year": [2023, 2024],
+#     "Q1": [25000, 28000],
+#     "Q2": [27000, 30000],
+#     "Q3": [26000, 31000],
+#     "Q4": [29000, 32000],
+# })
+
+# # ➤ Task: Convert this into long format using stack()
+
+# stacked_df = df.set_index("Year").stack()
+# print(stacked_df)
+
+
+# Topic: Pivot table
+
+# df = pd.DataFrame({
+#     "Department": ["HR", "HR", "IT", "IT", "HR", "IT"],
+#     "Employee": ["A", "B", "C", "D", "E", "F"],
+#     "Salary": [50000, 55000, 60000, 62000, 53000, 61000]
+# })
+
+# # ➤ Task: Use pivot_table to show average salary per department.
+# # ➤ Extra: Use count of employees per department using pivot_table too.
+# pivot = df.pivot_table(index="Department",values="Salary",aggfunc="mean")
+# print(pivot)
+
+# pivot1 = df.pivot_table(index="Department",values="Employee",aggfunc="count")
+# print(pivot1)
+
+
+# df = pd.DataFrame({
+#     "Product": ["Mobile", "Laptop", "Tablet"],
+#     "Jan": [10000, 20000, 15000],
+#     "Feb": [11000, 19000, 16000],
+#     "Mar": [12000, 21000, 17000]
+# })
+
+# # ➤ Task: Melt this data so that:
+# # Columns: Product, Month, Sales
+# melted = pd.melt(df,id_vars="Product",var_name="Month",value_name="Sales")
+# print(melted)
+
+
+# df = pd.DataFrame({
+#     "Region": ["East", "East", "East", "West", "West", "West"],
+#     "Product": ["Mobile", "Laptop", "Tablet", "Mobile", "Laptop", "Tablet"],
+#     "Jan": [10000, 15000, 9000, 11000, 14000, 9500],
+#     "Feb": [12000, 16000, 8800, 13000, 15000, 9700],
+#     "Mar": [13000, 15500, 9200, 13500, 14500, 9900]
+# })
+# melted = pd.melt(df,id_vars=["Region","Product"],var_name="Month",value_name="Sales")
+# print(melted)
+
+# pivot = melted.pivot_table(index=["Region","Month"],values="Sales",aggfunc="mean")
+# print(pivot)
+# pivot1 = melted.pivot_table(index=["Product","Month"],values="Sales",aggfunc="sum")
+# print(pivot1)
+
+
+# filtered_df=melted.groupby("Product")["Sales"].agg("max")
+# print(filtered_df.head(1))
+
+# filtered_df1 = melted.groupby("Region")["Sales"].agg("min")
+# rev_filtered=filtered_df1[::-1]
+# print(rev_filtered.head(1))
+
+
+
+# Topic: Concatenation and Appending
+
+# df1 = pd.DataFrame({
+#     "City": ["Delhi", "Mumbai"],
+#     "Population": [19000000, 20000000]
+# })
+
+# df2 = pd.DataFrame({
+#     "City": ["Chennai", "Kolkata"],
+#     "Population": [10000000, 15000000]
+# })
+
+# # ➤ Task 1: Concatenate them vertically and reset index
+# # ➤ Task 2: Concatenate them horizontally
+
+# result = pd.concat([df1,df2])
+# print(result)
+# updated_result = result.reset_index()
+# print(updated_result)
+
+# rs = pd.concat([df1,df2],axis=1)
+# print(rs)
+
+
+# Topic: DateTime Handling
+
+# Task: Convert Date column to datetime
+
+# df = pd.DataFrame({
+#     "Date": ["2022-05-01", "2022-06-01", "2022-07-01"],
+#     "Visitors": [120, 135, 150]
+# })
+
+# # 👉 Your job: convert the "Date" column to datetime format using pd.to_datetime()
+# # Then print the dtypes and the DataFrame.
+# df["Date"] = pd.to_datetime(df["Date"])
+# print(df)
+# print(df["Date"].dtype)
+
+
+
+# df = pd.DataFrame({
+#     "Date": ["2022-12-01", "2023-01-15", "2023-02-28"],
+#     "Revenue": [50000, 60000, 58000]
+# })
+
+# # 1. Convert Date to datetime
+# # 2. Extract Year, Month, and Day into new columns
+# # 3. Print the updated DataFrame
+# df["Date"] = pd.to_datetime(df["Date"])
+# df["Year"] = df["Date"].dt.year
+# df["Month"] = df["Date"].dt.month
+# df["Day"] = df["Date"].dt.day
+# print(df)
+
+
+# df = pd.DataFrame({
+#     "Date": pd.to_datetime(["2022-12-01", "2023-01-15", "2023-02-28", "2023-03-20"]),
+#     "Revenue": [50000, 60000, 58000, 62000]
+# })
+# print(df[df["Date"].dt.year==2023])
+# print(df[df["Date"].dt.month==2])
+# df["Weekday"] = df["Date"].dt.day_name()
+# print(df)
+
+# Topic : String Handling
+
+
+# df = pd.DataFrame({
+#     "Emails": [
+#         "alice@gmail.com", "bob@yahoo.com", "charlie@outlook.com", "david@gmail.com"
+#     ]
+# })
+
+# # ➤ Task 1: Extract domain names from each email (e.g., gmail.com)
+# # ➤ Task 2: Count how many emails are Gmail accounts
+# print(df["Emails"].str.split("@").str[1])
+# print(df["Emails"].str.contains("gmail.com").count())
+
+
+# df = pd.DataFrame({
+#     "Names": ["alice smith", "BOB JOHNSON", "Charlie.Brown", "david-lee"],
+#     "Emails": ["alice@gmail.com", "bob@yahoo.com", "charlie@outlook.com", "david@gmail.com"]
+# })
+
+# print(df["Names"].str.title())
+# print(df["Names"].str.replace(r"[.-]"," ",regex=True))
+ 
+
+# df = pd.DataFrame({
+#     "Emails": ["ram123@gmail.com", "simran.k@outlook.com", "kiran-y@yahoo.com", "raj@company.org"]
+# })
+# print(df["Emails"].str.split("@").str[0])
+# print(df["Emails"].str.split("@").str[1])
+# print(df["Emails"].str.replace("|\.org|\.net|\.com","",regex=True))
+
+# # Topic : map,replace and where
+
+
+# df = pd.DataFrame({
+#     "Name": ["Aman", "Simran", "Ravi", "Kiran", "Preeti"],
+#     "Marks": [92, 45, 76, 33, 88],
+#     "Gender": ["M", "F", "M", "F", "F"]
+# })
+# df["Result"] = df["Marks"].map(lambda x: "Pass" if x>=50 else "Fail")
+# print(df)
+
+# df["Gender"] = df["Gender"].map(lambda x: "Male" if x=="M" else "Female")
+# print(df)
+
+# df["Marks"] = df["Marks"].replace({92:100,88:100 , 33:0})
+# print(df)
+
+# df["Cleaned_Marks"] = df["Marks"].where(df["Marks"]>=50,"Needs Retest")
+# print(df)
+
+# df["Grade"] = df["Marks"].map(lambda x: "A" if x>=90 else("B" if 75<=x<90 else("C" if 50<=x<75 else "F")))
+# print(df)
+
+
+# Topic: Read and write csv file
+
+
+# data = {
+#     "Name": ["Aman", "Simran", "Ravi"],
+#     "Marks": [92, 45, 76]
+# }
+# df = pd.DataFrame(data)
+
+# # Write to CSV
+# df.to_csv("students.csv",sep="|",index=False)
+
+# # Read back from CSV
+# df2 = pd.read_csv("students.csv")
+
+# print(df2)
+
+
+
+
+
